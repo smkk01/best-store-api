@@ -83,7 +83,9 @@ const authMiddleware = (req, res, next) => {
   // If it exists, move to the next step
   next();
 };
-
+app.get('/', (req, res) => {
+  res.status(200).send('API is alive and running!');
+});
 const rules = auth.rewriter({
   // Permission rules
   users: 660,
