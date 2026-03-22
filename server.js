@@ -73,7 +73,16 @@ server.post("/products", (req, res, next) => {
   next()
 })
 
-
+const authMiddleware = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  
+  if (!authHeader) {
+    return res.status(401).send("Missing authorization header");
+  }
+  
+  // If it exists, move to the next step
+  next();
+};
 
 const rules = auth.rewriter({
   // Permission rules
