@@ -29,6 +29,10 @@ const bodyParser = multer({ storage: storage }).any()
 
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
+server.get('/', (req, res) => {
+  res.status(200).send('API is alive and running!');
+	
+});
 server.use(bodyParser)
 server.post("/products", (req, res, next) => {
   let date = new Date()
@@ -83,9 +87,7 @@ const authMiddleware = (req, res, next) => {
   // If it exists, move to the next step
   next();
 };
-app.get('/', (req, res) => {
-  res.status(200).send('API is alive and running!');
-});
+
 const rules = auth.rewriter({
   // Permission rules
   users: 660,
